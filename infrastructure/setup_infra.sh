@@ -177,7 +177,7 @@ aws elb describe-load-balancers --output=text \
 
 # update the movies-service deployment manifest user endpoint
 
-sed -i -e "s/localhost:3002/${YOUR_USERS_SERVICE_URL}/g" manifests/movies-service-deployment.yaml
+sed -i -e "s@localhost:3002@${YOUR_USERS_SERVICE_URL}@g" manifests/movies-service-deployment.yaml
 
 # deploy movies service and update users-service endpoint to LB public DNS
 
@@ -191,8 +191,8 @@ aws elb describe-load-balancers --output=text \
 
 # update the web-service deployment manifest users and movies endpoints
 
-sed -i -e "s/localhost:3002/${YOUR_USERS_SERVICE_URL}/g" manifests/web-service-deployment.yaml
-sed -i -e "s/localhost:3004/${YOUR_MOVIES_SERVICE_URL}/g" manifests/web-service-deployment.yaml
+sed -i -e "s@localhost:3002@${YOUR_USERS_SERVICE_URL}@g" manifests/web-service-deployment.yaml
+sed -i -e "s@localhost:3004@${YOUR_MOVIES_SERVICE_URL}@g" manifests/web-service-deployment.yaml
 
 # deploy web service - SHOULD CREATE A LB automatically on AWS
 
